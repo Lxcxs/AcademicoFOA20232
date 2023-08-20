@@ -1,0 +1,34 @@
+﻿@model Academico.Models.Departamento
+
+@{
+    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="container-del">
+    <div class="content">
+        <h3>Tem certeza de que deseja excluir este registro?</h3>
+        <div>
+            <h4>Departamento</h4>
+            <hr />
+            <dl class="row">
+                <dt>@Html.DisplayNameFor(model => model.DepartamentoID)</dt>
+                <dd>@Html.DisplayFor(model => model.DepartamentoID)</dd>
+                <dt>@Html.DisplayNameFor(model => model.Nome)</dt>
+                <dd>@Html.DisplayFor(model => model.Nome)</dd>
+            </dl>
+
+            <div class="btn-group">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="DepartamentoID" />
+                    <input type="submit" value="Excluir" class="btn btn-danger" />
+                </form>
+                <div style="margin-top: 10px;">
+                    <a asp-action="Index" class="btn btn-link">Voltar para a Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

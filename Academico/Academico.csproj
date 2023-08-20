@@ -6,4 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Views\Aluno\Details.cshtml.cs" />
+    <Compile Remove="Views\Aluno\HomeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Aluno\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+  </ItemGroup>
+
 </Project>

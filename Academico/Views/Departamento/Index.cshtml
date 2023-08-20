@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Academico.Models.Departamento>
+@{
+    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="container-dept">
+    <h2>Lista de Departamentos</h2>
+    <p>
+        <a href="@Url.Action("Create")">Registrar Departamento</a>
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Departamento ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.DepartamentoID)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td class="action-links">
+                        <a href="@Url.Action("Edit", new { id = item.DepartamentoID })">Editar</a>
+                        <a href="@Url.Action("Details", new { id = item.DepartamentoID })">Detalhes</a>
+                        <a href="@Url.Action("Delete", new { id = item.DepartamentoID })">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

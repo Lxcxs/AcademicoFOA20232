@@ -1,0 +1,34 @@
+﻿@model Academico.Models.Aluno
+@{
+    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="container-dept">
+    <div class="content">
+        <h4>Detalhes do Aluno</h4>
+        <dl>
+            <div>
+                <dt>ID do Departamento:</dt>
+                <dd>@Html.DisplayFor(model => model.AlunoID)</dd>
+            </div>
+
+            <div>
+                <dt>Nome:</dt>
+                <dd>@Html.DisplayFor(model => model.Nome)</dd>
+            </div>
+
+            <div>
+                <dt>Matricula:</dt>
+                <dd>@Html.DisplayFor(model => model.Matricula)</dd>
+            </div>
+        </dl>
+
+        <div class="action-links">
+            <a href="@Url.Action("Edit", new { id = Model.AlunoID })">Editar</a>
+            <a asp-action="Index">Voltar para a Lista</a>
+        </div>
+    </div>
+</div>
+

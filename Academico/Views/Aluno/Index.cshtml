@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Academico.Models.Aluno>
+
+@{
+    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="container-aluno">
+    <p>
+        <a asp-action="Create">Registrar Novo Aluno</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlunoID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Matricula)
+                </th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AlunoID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Matricula)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.AlunoID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.AlunoID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.AlunoID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
