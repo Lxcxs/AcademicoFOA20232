@@ -21,8 +21,8 @@
         <tbody>
             @foreach (var item in Model) {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.DepartamentoID)</td>
                     <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Instituicao.Nome)</td>
                     <td class="action-links">
                         <a href="@Url.Action("Edit", new { id = item.DepartamentoID })">Editar</a>
                         <a href="@Url.Action("Details", new { id = item.DepartamentoID })">Detalhes</a>
