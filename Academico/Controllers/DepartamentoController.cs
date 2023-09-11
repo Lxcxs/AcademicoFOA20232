@@ -10,23 +10,23 @@ using Academico.Models;
 
 namespace Academico.Controllers
 {
-    public class DepartamentosController : Controller
+    public class DepartamentoController : Controller
     {
         private readonly AcademicoContext _context;
 
-        public DepartamentosController(AcademicoContext context)
+        public DepartamentoController(AcademicoContext context)
         {
             _context = context;
         }
 
-        // GET: Departamentoes
+        // GET: Departamento
         public async Task<IActionResult> Index()
         {
             var academicoContext = _context.Departamentos.Include(d => d.Instituicao);
             return View(await academicoContext.ToListAsync());
         }
 
-        // GET: Departamentoes/Details/5
+        // GET: Departamento/Details/5
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null || _context.Departamentos == null)
@@ -45,19 +45,19 @@ namespace Academico.Controllers
             return View(departamento);
         }
 
-        // GET: Departamentoes/Create
+        // GET: Departamento/Create
         public IActionResult Create()
         {
             ViewData["InstituicaoID"] = new SelectList(_context.Instituicoes, "InstituicaoID", "InstituicaoID");
             return View();
         }
 
-        // POST: Departamentoes/Create
+        // POST: Departamento/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,InstituicaoID")] Departamento departamento)
+        public async Task<IActionResult> Create([Bind("DepartamentoID,Nome,InstituicaoID")] Departamento departamento)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +65,11 @@ namespace Academico.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["InstituicaoID"] = new SelectList(_context.Instituicoes, "InstituicaoID", "Nome", departamento.InstituicaoID);
+            ViewData["InstituicaoID"] = new SelectList(_context.Instituicoes, "InstituicaoID", "InstituicaoID", departamento.InstituicaoID);
             return View(departamento);
         }
 
-        // GET: Departamentoes/Edit/5
+        // GET: Departamento/Edit/5
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null || _context.Departamentos == null)
@@ -86,7 +86,7 @@ namespace Academico.Controllers
             return View(departamento);
         }
 
-        // POST: Departamentoes/Edit/5
+        // POST: Departamento/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -122,7 +122,7 @@ namespace Academico.Controllers
             return View(departamento);
         }
 
-        // GET: Departamentoes/Delete/5
+        // GET: Departamento/Delete/5
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null || _context.Departamentos == null)
@@ -141,7 +141,7 @@ namespace Academico.Controllers
             return View(departamento);
         }
 
-        // POST: Departamentoes/Delete/5
+        // POST: Departamento/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long? id)

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Academico.Migrations
 {
     [DbContext(typeof(AcademicoContext))]
-    [Migration("20230904172940_inicial")]
+    [Migration("20230908215038_inicial")]
     partial class inicial
     {
         /// <inheritdoc />
@@ -24,6 +24,27 @@ namespace Academico.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Academico.Models.Departamento", b =>
+                {
+                    b.Property<long?>("DepartamentoID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("DepartamentoID"));
+
+                    b.Property<long>("InstituicaoID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DepartamentoID");
+
+                    b.HasIndex("InstituicaoID");
+
+                    b.ToTable("Departamentos");
+                });
 
             modelBuilder.Entity("Academico.Models.Instituicao", b =>
                 {
@@ -42,6 +63,22 @@ namespace Academico.Migrations
                     b.HasKey("InstituicaoID");
 
                     b.ToTable("Instituicoes");
+                });
+
+            modelBuilder.Entity("Academico.Models.Departamento", b =>
+                {
+                    b.HasOne("Academico.Models.Instituicao", "Instituicao")
+                        .WithMany("Departamentos")
+                        .HasForeignKey("InstituicaoID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instituicao");
+                });
+
+            modelBuilder.Entity("Academico.Models.Instituicao", b =>
+                {
+                    b.Navigation("Departamentos");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,29 +1,31 @@
 ﻿@model Academico.Models.Departamento
-@{
-    Layout = null;
-    Layout = "~/Views/Shared/_Layout.cshtml";
 
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-dept">
-    <div class="content">
-        <h4>Detalhes do Departamento</h4>
-        <dl>
-            <div>
-                <dt>ID do Departamento:</dt>
-                <dd>@Html.DisplayFor(model => model.DepartamentoID)</dd>
-            </div>
+<h1>Details</h1>
 
-            <div>
-                <dt>Nome:</dt>
-                <dd>@Html.DisplayFor(model => model.Nome)</dd>
-            </div>
-        </dl>
-
-        <div class="action-links">
-            <a href="@Url.Action("Edit", new { id = Model.DepartamentoID })">Editar</a>
-            <a asp-action="Index">Voltar para a Lista</a>
-        </div>
-    </div>
+<div>
+    <h4>Departamento</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Instituicao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Instituicao.InstituicaoID)
+        </dd>
+    </dl>
 </div>
-
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.DepartamentoID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
